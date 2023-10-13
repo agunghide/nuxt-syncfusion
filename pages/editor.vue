@@ -41,13 +41,18 @@
         :enable-table-options-dialog="true"
       />
     </div>
-    <div class="px-12 py-32 bg-red-200 w-15">
-      <h1 class="bold">
+    <div class="px-12 py-32 bg-gray-400 w-15">
+      <h1 class="font-bold mb-5">
         Contoh Dinamis Data
       </h1>
-      <div class="space-y-10">
-        <div>
-          <select v-model="selectedImage">
+      <div class="space-y-3">
+        <div class="spce-y-1">
+          <label for="header">Image</label>
+          <select
+            id="header"
+            v-model="selectedImage"
+            class="w-full rounded-md p-2"
+          >
             <option
               v-for="(image, index) in images"
               :key="index"
@@ -57,10 +62,13 @@
             </option>
           </select>
         </div>
-        <div>
+        <div class="spce-y-1">
+          <label for="tandatangan">Penandatangan</label>
           <input
+            id="tandatangan"
             v-model="tandatangan"
-            placeholder="penandatangan"
+            placeholder="Input Penandatangan"
+            class="w-full rounded-md p-2"
             type="text"
           >
         </div>
