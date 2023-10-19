@@ -64,7 +64,7 @@ import {
 import { DropDownButtonComponent } from '@syncfusion/ej2-vue-splitbuttons'
 import { ButtonComponent } from '@syncfusion/ej2-vue-buttons'
 import { MenuComponent } from '@syncfusion/ej2-vue-navigations'
-import { defaultDocument } from '@/static/suratBiasa'
+import { defaultDocument } from '~/assets/template-surat/suratBiasa'
 
 export default {
   components: {
