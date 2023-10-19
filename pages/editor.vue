@@ -15,6 +15,7 @@
         :content-change="updatedData"
         :service-url="serviceUrl"
         :is-read-only="false"
+        :enable-toolbar="true"
         :enable-auto-focus="false"
         :enable-print="true"
         :enable-sfdt-export="true"
@@ -41,7 +42,7 @@
         :enable-table-options-dialog="true"
       />
     </div>
-    <div class="px-12 py-32 bg-gray-400 w-15">
+    <div v-if="false" class="px-12 py-32 bg-gray-400 w-15">
       <h1 class="font-bold mb-5">
         Contoh Dinamis Data
       </h1>
@@ -118,7 +119,7 @@
 </template>
 <script>
 // import Vue from 'vue'
-import { DocumentEditorComponent, Print, SfdtExport, WordExport, TextExport, Selection, Search, Editor, ImageResizer, EditorHistory, ContextMenu, OptionsPane, HyperlinkDialog, TableDialog, BookmarkDialog, TableOfContentsDialog, PageSetupDialog, StyleDialog, ListDialog, ParagraphDialog, BulletsAndNumberingDialog, FontDialog, TablePropertiesDialog, BordersAndShadingDialog, TableOptionsDialog, CellOptionsDialog, StylesDialog } from '@syncfusion/ej2-vue-documenteditor'
+import { DocumentEditorComponent, Print, SfdtExport, WordExport, TextExport, Selection, Search, Editor, ImageResizer, EditorHistory, ContextMenu, OptionsPane, HyperlinkDialog, TableDialog, BookmarkDialog, TableOfContentsDialog, PageSetupDialog, StyleDialog, ListDialog, ParagraphDialog, BulletsAndNumberingDialog, FontDialog, TablePropertiesDialog, BordersAndShadingDialog, TableOptionsDialog, CellOptionsDialog, StylesDialog, Toolbar } from '@syncfusion/ej2-vue-documenteditor'
 
 // Vue.use(DocumentEditorPlugin)
 
@@ -131,7 +132,7 @@ export default {
   },
   provide: {
     // Inject require modules.
-    DocumentEditor: [Print, SfdtExport, WordExport, TextExport, Selection, Search, Editor, ImageResizer, EditorHistory, ContextMenu, OptionsPane, HyperlinkDialog, TableDialog, BookmarkDialog, TableOfContentsDialog, PageSetupDialog, StyleDialog, ListDialog, ParagraphDialog, BulletsAndNumberingDialog, FontDialog, TablePropertiesDialog, BordersAndShadingDialog, TableOptionsDialog, CellOptionsDialog, StylesDialog]
+    DocumentEditor: [Print, SfdtExport, WordExport, TextExport, Selection, Search, Editor, ImageResizer, EditorHistory, ContextMenu, OptionsPane, HyperlinkDialog, TableDialog, BookmarkDialog, TableOfContentsDialog, PageSetupDialog, StyleDialog, ListDialog, ParagraphDialog, BulletsAndNumberingDialog, FontDialog, TablePropertiesDialog, BordersAndShadingDialog, TableOptionsDialog, CellOptionsDialog, StylesDialog, Toolbar]
   },
   data () {
     return {
@@ -200,8 +201,11 @@ export default {
       console.log(this.$refs.doceditcontainer.serialize())
     },
     updatedDataBadan () {
-      JSON.parse(this.$refs.badan.serialize())
-      console.log(this.$refs.badan.serialize())
+      const newData = JSON.parse(this.$refs.badan.serialize())
+      const kopSurat = this.rawData.sections[0]
+      const speciment = this.rawData.sections[this.rawData.sections.length - 1]
+      const newFormatData = [kopSurat, ...newData.sections, speciment]
+      console.log(newFormatData)
     },
     keyDown (args) {
       const keyCode = args.event.which || args.event.keyCode

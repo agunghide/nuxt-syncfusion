@@ -7,6 +7,7 @@
           ref="de_titlebar"
           class="e-de-ctn-title"
         >
+          <ejs-menu :items="menuItems" />
           <div
             id="documenteditor_title_contentEditor"
             class="single-line"
@@ -19,7 +20,9 @@
               id="documenteditor_title_name"
               :style="titileStyle"
               @blur="titleBarBlurEvent"
-            >{{ documentName }}</label>
+            >
+              {{ documentName }}
+            </label>
           </div>
           <ejs-button
             id="de-print"
@@ -46,10 +49,8 @@
           ref="doceditcontainer"
           :service-url="hostUrl"
           :enable-toolbar="true"
-          height="800px"
-        >
-          Halo brother
-        </ejs-documenteditorcontainer>
+          height="1024px"
+        />
       </div>
     </div>
   </div>
@@ -59,15 +60,18 @@ import {
   DocumentEditorContainerComponent,
   Toolbar
 } from '@syncfusion/ej2-vue-documenteditor'
+
 import { DropDownButtonComponent } from '@syncfusion/ej2-vue-splitbuttons'
 import { ButtonComponent } from '@syncfusion/ej2-vue-buttons'
-import { defaultDocument } from '~/components/data'
+import { MenuComponent } from '@syncfusion/ej2-vue-navigations'
+import { defaultDocument } from '@/static/suratBiasa'
 
 export default {
   components: {
     'ejs-documenteditorcontainer': DocumentEditorContainerComponent,
     'ejs-dropdownbutton': DropDownButtonComponent,
-    'ejs-button': ButtonComponent
+    'ejs-button': ButtonComponent,
+    'ejs-menu': MenuComponent
   },
   provide: {
     DocumentEditorContainer: [Toolbar]
@@ -88,6 +92,43 @@ export default {
       exportItems: [
         { text: 'Microsoft Word (.docx)', id: 'word' },
         { text: 'Syncfusion Document Text (.sfdt)', id: 'sfdt' }
+      ],
+      menuItems: [
+        {
+          text: 'File',
+          items: [
+            { text: 'Open' },
+            { text: 'Save' },
+            { separator: true },
+            { text: 'Exit' }
+          ]
+        },
+        {
+          text: 'Edit',
+          items: [
+            { text: 'Cut' },
+            { text: 'Copy' },
+            { text: 'Paste' }
+          ]
+        },
+        {
+          text: 'View',
+          items: [
+            { text: 'Toolbar' },
+            { text: 'Sidebar' },
+            { text: 'Full Screen' }
+          ]
+        },
+        {
+          text: 'Tools',
+          items: [
+            { text: 'Spelling & Grammar' },
+            { text: 'Customize' },
+            { text: 'Options' }
+          ]
+        },
+        { text: 'Go' },
+        { text: 'Help' }
       ]
     }
   },
