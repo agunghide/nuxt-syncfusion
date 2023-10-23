@@ -76,6 +76,12 @@ export default {
   provide: {
     DocumentEditorContainer: [Toolbar]
   },
+  props: {
+    document: {
+      type: Object,
+      default: () => defaultDocument
+    }
+  },
   data () {
     return {
       hostUrl:
@@ -135,7 +141,7 @@ export default {
   mounted () {
     this.$nextTick(function () {
       const obj = this.$refs.doceditcontainer.ej2Instances.documentEditor
-      obj.open(JSON.stringify(defaultDocument))
+      obj.open(JSON.stringify(this.document))
       obj.documentName = 'Getting Started'
       this.$refs.doceditcontainer.ej2Instances.documentChange = () => {
         this.documentChangedEvent()
